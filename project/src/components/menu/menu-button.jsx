@@ -1,12 +1,15 @@
 import { useState } from "react";
 
-export const MenuButton = ({onAddButton}) => {
+export const MenuButton = ({ addItemHandler, menuItem }) => {
     const [isButtonClicked, setIsButtonClicked] = useState(false);
     const inCartHandler = () => {
-            setIsButtonClicked(false)
-            onAddButton?.();
+        addItemHandler(menuItem);
     }
-    
+    const addHandler = () => {
+        setIsButtonClicked(true)
+        addItemHandler(menuItem);
+    }
+
     return (
         (isButtonClicked) ?
             <button onClick={inCartHandler} className="in-cart">
@@ -15,7 +18,7 @@ export const MenuButton = ({onAddButton}) => {
             </button>
             :
             <button
-                onClick={() => setIsButtonClicked(true)}
+                onClick={addHandler}
                 className="add"
                 dataset="true"
             >
