@@ -1,11 +1,16 @@
+import { useState } from "react";
 import { CartItemCard } from "./cart-item-card";
 
 export const Cart = (props) => {
     let itemPrice = props.menuItem.price / 100;
-    let itemsQuantity = props.menuItem.count;
+    let [itemsQuantity, setItemsQuantity] = useState(props.menuItem.count);
+    let changeQuantity = (changedItemsQuantity) => {
+        setItemsQuantity (changedItemsQuantity);
+    }
     let summaryPrice = itemPrice * itemsQuantity;
-    let summaryTax = (summaryPrice / 10);
+    let summaryTax = summaryPrice / 10;
     let total = summaryPrice + summaryTax;
+
     return (
         <div className="panel cart">
             <h1>Your Cart</h1>
@@ -13,14 +18,14 @@ export const Cart = (props) => {
                 {(itemsQuantity === 0) ?
                     <p className="empty">Your cart is empty.</p>
                     :
-                    <CartItemCard menuItem={props.menuItem} />
+                    <CartItemCard menuItem={props.menuItem} changeQuantity={changeQuantity} itemsQuantity={itemsQuantity} />
                 }
             </ul>
             <div className="totals">
                 <div className="line-item">
                     <div className="label">Subtotal:</div>
                     <div className="amount price subtotal">
-                        {(itemsQuantity === 0) ? `$0` : `$${summaryPrice}`
+                        {(itemsQuantity === 0) ? `$0` : `$${summaryPrice.toFixed(2)}`
                         }
                     </div>
                 </div>
