@@ -22,6 +22,26 @@ export function Main(props) {
         }
 
     }
+
+    const removeItemHandler = (item) => {
+        console.log(item);
+        const filtredItemsIndex = cart.findIndex(element => element.id === item.id);
+        console.log(filtredItemsIndex);
+        console.log(cart[filtredItemsIndex]);
+        if (cart[filtredItemsIndex].quantity > 1) {
+            const modifiedItem = Object.assign({}, cart[filtredItemsIndex]);
+            modifiedItem.quantity--;
+            const cartItems = [...cart];
+            cartItems[filtredItemsIndex] = modifiedItem;
+            setCart(cartItems);
+
+        } else {
+            const cartItems = cart.filter(element => element.id !== item.id);
+            setCart(cartItems);
+        }
+
+    }
+
     let menuItems = props.menuItems;
     return (
         <div className="wrapper menu">
@@ -34,7 +54,7 @@ export function Main(props) {
                     ))}
                 </ul>
             </div>
-            <Cart cart={cart} />
+            <Cart cart={cart} addItemHandler={addItemHandler} removeItemHandler={removeItemHandler} />
         </div>
 
 

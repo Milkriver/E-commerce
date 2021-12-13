@@ -1,14 +1,13 @@
-import { useState } from "react";
 import { CartItemCard } from "./cart-item-card";
 
 export const Cart = (props) => {
-    const { cart } = props;
+    const { cart, removeItemHandler, addItemHandler } = props;
     console.log(cart);
     // let itemPrice = props.menuItem.price / 100;
-    let [itemsQuantity, setItemsQuantity] = useState(0);
-    let changeQuantity = (changedItemsQuantity) => {
-        setItemsQuantity(changedItemsQuantity);
-    }
+    // let [itemsQuantity, setItemsQuantity] = useState(0);
+    // let changeQuantity = (changedItemsQuantity) => {
+    //     setItemsQuantity(changedItemsQuantity);
+    // }
     // let summaryPrice = itemPrice * itemsQuantity;
     // let summaryTax = summaryPrice / 10;
     // let total = summaryPrice + summaryTax;
@@ -21,7 +20,7 @@ export const Cart = (props) => {
                     <p className="empty">Your cart is empty.</p>
                     :
                     cart.map((cartItem) => (
-                        <CartItemCard menuItem={cartItem} changeQuantity={changeQuantity} itemsQuantity={cartItem.quantity} key={cartItem.name} />
+                        <CartItemCard menuItem={cartItem} addItemHandler={addItemHandler} removeItemHandler={removeItemHandler} key={cartItem.name} />
                     )
                     )
                 }
@@ -30,8 +29,7 @@ export const Cart = (props) => {
                 <div className="line-item">
                     <div className="label">Subtotal:</div>
                     <div className="amount price subtotal">
-                        {(itemsQuantity === 0) ? `$0` : `$100`
-                        }
+                        {/* {(cart[0].quantity === 0) ? `$0` : `$100`} */}
                     </div>
                 </div>
                 <div className="line-item">

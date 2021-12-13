@@ -1,23 +1,20 @@
 import { IcnDecButton } from "./inc-dec-buttons";
 
-export const CartItemCard = (props) => {
-    let changeQuantity = props.changeQuantity;
-    let menuItem = props.menuItem;
-    let itemsCount = props.itemsQuantity;
+export const CartItemCard = ({ removeItemHandler, menuItem, addItemHandler }) => {
 
     return (
         <li>
             <div className="plate">
                 <img src="images/plate__fish-sticks-fries.png" alt="Fish Sticks and Fries" className="plate" />
-                <div className="quantity">{itemsCount}</div>
+                <div className="quantity">{menuItem.quantity}</div>
             </div>
             <div className="content">
                 <p className="menu-item">{menuItem.name}</p>
                 <p className="price">{`$${(menuItem.price / 100).toFixed(2)}`}</p>
             </div>
-            <IcnDecButton changeQuantity={changeQuantity} itemsCount={itemsCount} />
+            <IcnDecButton removeItemHandler={removeItemHandler} addItemHandler={addItemHandler} menuItem={menuItem} />
             <div className="subtotal">
-                {`$${(menuItem.price / 100 * itemsCount).toFixed(2)}`}
+                {`$${(menuItem.price / 100 * menuItem.quantity).toFixed(2)}`}
             </div>
         </li>
     )
