@@ -3,14 +3,10 @@ import { CartItemCard } from "./cart-item-card";
 export const Cart = (props) => {
     const { cart, removeItemHandler, addItemHandler } = props;
     console.log(cart);
-    // let itemPrice = props.menuItem.price / 100;
-    // let [itemsQuantity, setItemsQuantity] = useState(0);
-    // let changeQuantity = (changedItemsQuantity) => {
-    //     setItemsQuantity(changedItemsQuantity);
-    // }
-    // let summaryPrice = itemPrice * itemsQuantity;
-    // let summaryTax = summaryPrice / 10;
-    // let total = summaryPrice + summaryTax;
+
+    let summaryPrice = cart.reduce((accum, elem) => accum + elem.price*elem.quantity, 0)/100
+    let summaryTax = (summaryPrice / 10);
+    let total = summaryPrice + summaryTax;
 
     return (
         <div className="panel cart">
@@ -28,17 +24,16 @@ export const Cart = (props) => {
             <div className="totals">
                 <div className="line-item">
                     <div className="label">Subtotal:</div>
-                    <div className="amount price subtotal">
-                        {/* {(cart[0].quantity === 0) ? `$0` : `$100`} */}
+                    <div className="amount price subtotal">{(cart.length === 0) ? `$0`:`$${summaryPrice}`}
                     </div>
                 </div>
                 <div className="line-item">
                     <div className="label">Tax:</div>
-                    <div className="amount price tax">{`$100`}</div>
+                    <div className="amount price tax">{(cart.length === 0) ? `$0`:`$${summaryTax.toFixed(2)}`}</div>
                 </div>
                 <div className="line-item total">
                     <div className="label">Total:</div>
-                    <div className="amount price total">{`$100`}</div>
+                    <div className="amount price total">{(cart.length === 0) ? `$0`:`$${total.toFixed(2)}`}</div>
                 </div>
             </div>
         </div>
