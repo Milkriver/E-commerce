@@ -1,17 +1,13 @@
-import { useState } from "react";
-
-export const MenuButton = ({ addItemHandler, menuItem }) => {
-    const [isButtonClicked, setIsButtonClicked] = useState(false);
+export const MenuButton = ({ addItemHandler, menuItem, isItemInCart }) => {
     const inCartHandler = () => {
         addItemHandler(menuItem);
     }
     const addHandler = () => {
-        setIsButtonClicked(true)
         addItemHandler(menuItem);
     }
 
     return (
-        (isButtonClicked) ?
+        (isItemInCart) ?
             <button onClick={inCartHandler} className="in-cart">
                 <img src="images/check.svg" alt="Check" />
                 In Cart

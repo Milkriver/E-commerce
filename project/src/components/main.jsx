@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Cart } from "./cart/cart";
 import { MenuItemCard } from "./menu/menu-item-card";
 
-export function Main(props) {
+export function Main({menuItems}) {
     const [cart, setCart] = useState([]);
     const addItemHandler = (item) => {
         console.log(item);
@@ -24,10 +24,7 @@ export function Main(props) {
     }
 
     const removeItemHandler = (item) => {
-        console.log(item);
         const filtredItemsIndex = cart.findIndex(element => element.id === item.id);
-        console.log(filtredItemsIndex);
-        console.log(cart[filtredItemsIndex]);
         if (cart[filtredItemsIndex].quantity > 1) {
             const modifiedItem = Object.assign({}, cart[filtredItemsIndex]);
             modifiedItem.quantity--;
@@ -41,15 +38,13 @@ export function Main(props) {
         }
 
     }
-
-    let menuItems = props.menuItems;
     return (
         <div className="wrapper menu">
             <div className="panel">
                 <h1>To Go Menu</h1>
                 <ul className="menu">
                     {menuItems.map((menuItem) => (
-                        <MenuItemCard menuItem={menuItem} addItemHandler={addItemHandler} key={menuItem.name}
+                        <MenuItemCard cart={cart} menuItem={menuItem} addItemHandler={addItemHandler} key={menuItem.name}
                         />
                     ))}
                 </ul>

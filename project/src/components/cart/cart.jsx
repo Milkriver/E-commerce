@@ -2,8 +2,6 @@ import { CartItemCard } from "./cart-item-card";
 
 export const Cart = (props) => {
     const { cart, removeItemHandler, addItemHandler } = props;
-    console.log(cart);
-
     let summaryPrice = cart.reduce((accum, elem) => accum + elem.price*elem.quantity, 0)/100
     let summaryTax = (summaryPrice / 10);
     let total = summaryPrice + summaryTax;
