@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Cart } from "./cart/cart";
 import { MenuItemCard } from "./menu/menu-item-card";
 
-export function Main({menuItems}) {
+export function Main({ menuItems }) {
     const [cart, setCart] = useState([]);
     const addItemHandler = (item) => {
         console.log(item);
@@ -20,7 +20,6 @@ export function Main({menuItems}) {
             cartItems.push(modifiedItem);
             setCart(cartItems);
         }
-
     }
 
     const removeItemHandler = (item) => {
@@ -51,13 +50,6 @@ export function Main({menuItems}) {
             </div>
             <Cart cart={cart} addItemHandler={addItemHandler} removeItemHandler={removeItemHandler} />
         </div>
-
-
-
-
-
-
     )
-
 };
 

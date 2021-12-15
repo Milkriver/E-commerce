@@ -1,5 +1,4 @@
 export const IcnDecButton = ({addItemHandler, removeItemHandler, menuItem}) => {
-
     return (
         <div className="quantity__wrapper">
             <button onClick={() => removeItemHandler(menuItem)} className="decrease">
