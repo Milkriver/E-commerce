@@ -12,10 +12,7 @@ export const Cart = ({ cart, removeItemHandler, addItemHandler }) => {
                 {(cart.length === 0) ?
                     <p className="empty">Your cart is empty.</p>
                     :
-                    cart.map((cartItem) => (
-                        <CartItemCard menuItem={cartItem} addItemHandler={addItemHandler} removeItemHandler={removeItemHandler} key={cartItem.name} />
-                    )
-                    )
+                    cart.map((cartItem) => (<CartItemCard menuItem={cartItem} addItemHandler={addItemHandler} removeItemHandler={removeItemHandler} key={cartItem.name} />))
                 }
             </ul>
             <div className="totals">

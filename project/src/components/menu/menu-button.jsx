@@ -9,8 +9,7 @@ export const MenuButton = ({ addItemHandler, menuItem, isItemInCart }) => {
     return (
         (isItemInCart) ?
             <button onClick={inCartHandler} className="in-cart">
-                <img src="images/check.svg" alt="Check" />
-                In Cart
+                <img src="images/check.svg" alt="Check" />In Cart
             </button>
             :
             <button
